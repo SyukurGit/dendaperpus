@@ -2,23 +2,31 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\Keycloak\KeycloakExtendSocialite;
+
+// Perhatikan 'use' yang benar di sini
+use SocialiteProviders\Keycloak\Provider as KeycloakProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-   protected $listen = [
+    /**
+     * The event to listener mappings for the application.
+     *
+     * @var array<class-string, array<int, class-string>>
+     */
+    protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        // TAMBAHKAN BLOK INI
-        SocialiteWasCalled::class => [
-            KeycloakExtendSocialite::class.'@handle',
-        ],
     ];
 
-    
+    /**
+     * Register any application services.
+     */
     public function register(): void
     {
         //
@@ -29,8 +37,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(function (SocialiteWasCalled $event) {
+            // Ganti kelas yang dipanggil di sini
+            $event->extendSocialite('keycloak', KeycloakProvider::class);
+        });
     }
-
-    
 }
