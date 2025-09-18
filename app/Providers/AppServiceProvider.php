@@ -3,12 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Keycloak\KeycloakExtendSocialite;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+   protected $listen = [
+        Registered::class => [
+            SendEmailVerificationNotification::class,
+        ],
+        // TAMBAHKAN BLOK INI
+        SocialiteWasCalled::class => [
+            KeycloakExtendSocialite::class.'@handle',
+        ],
+    ];
+
+    
     public function register(): void
     {
         //
@@ -21,4 +31,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    
 }

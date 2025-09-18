@@ -14,6 +14,16 @@ return [
     |
     */
 
+'keycloak' => [
+        'client_id' => env('KEYCLOAK_CLIENT_ID'),
+        'client_secret' => null, // Kita tidak pakai secret, jadi isinya null
+        'redirect' => env('KEYCLOAK_REDIRECT_URI'),
+        'base_url' => env('KEYCLOAK_BASE_URL'),
+        'realm' => env('KEYCLOAK_REALM'),
+    ],
+
+
+    
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
