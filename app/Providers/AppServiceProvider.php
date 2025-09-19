@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-// Hapus semua 'use' yang tidak perlu terkait Socialite
+// Hapus 'use' untuk SocialiteWasCalled dan KeycloakProvider
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider // Pastikan extends ServiceProvider biasa
+// Ganti EventServiceProvider menjadi ServiceProvider biasa
+class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -20,6 +21,6 @@ class AppServiceProvider extends ServiceProvider // Pastikan extends ServiceProv
      */
     public function boot(): void
     {
-        // Kosongkan metode ini dari listener Socialite
+        // KOSONGKAN BAGIAN INI DARI KODE EVENT LISTENER
     }
 }

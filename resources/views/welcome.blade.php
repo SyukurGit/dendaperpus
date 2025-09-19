@@ -10,7 +10,8 @@
         <a href="{{ route('dashboard') }}">Ke Dashboard</a>
     @else
         <p>Silakan login untuk melanjutkan.</p>
-        <a href="{{ route('login') }}">Login via SSO Kampus</a>
+        {{-- UBAH BAGIAN INI --}}
+        <a href="{{ route('dashboard') }}">Login via SSO Kampus</a>
     @endauth
 </body>
 </html>
