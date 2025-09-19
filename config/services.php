@@ -2,26 +2,7 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Third Party Services
-    |--------------------------------------------------------------------------
-    |
-    | This file is for storing the credentials for third party services such
-    | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
-    |
-    */
-
-'keycloak' => [
-        'client_id' => env('KEYCLOAK_CLIENT_ID'),
-        'client_secret' => null, // Kita tidak pakai secret, jadi isinya null
-        'redirect' => env('KEYCLOAK_REDIRECT_URI'),
-        'base_url' => env('KEYCLOAK_BASE_URL'),
-        'realm' => env('KEYCLOAK_REALM'),
-    ],
-
+   
 
     
     'postmark' => [
